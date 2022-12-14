@@ -11,15 +11,15 @@ const App: React.FC<{ pdfLink: string }> = ({ pdfLink }) => {
     WebViewer(
       {
         path: "/webviewer",
-
-        initialDoc: pdfLink,
-        disableLogs: true,
-        isReadOnly: true,
-        streaming: true,
       },
       viewer.current as HTMLElement
     ).then((instance) => {
       instance.UI.setLanguage("pt_BR");
+      const options = {
+        cacheKey: "unique_id_entry123",
+      };
+
+      instance.UI.loadDocument(pdfLink, options);
     });
   }, [pdfLink]);
 
